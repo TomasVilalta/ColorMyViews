@@ -14,39 +14,44 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding= DataBindingUtil.setContentView(this,R.layout.activity_main)
-
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
         setListeners()
-
-
     }
 
     private fun setListeners() {
-
         val clickableViews: List<View> =
-            listOf(binding.boxOneText, binding.boxTwoText, binding.boxThreeText,
-            binding.boxFourText, binding.boxFiveText)
-
+            listOf(
+                binding.boxOneText,
+                binding.boxTwoText,
+                binding.boxThreeText,
+                binding.boxFourText,
+                binding.boxFiveText,
+                binding.button1,
+                binding.button2,
+                binding.button3
+            )
         for (item in clickableViews) {
-            item.setOnClickListener { makeColored(it) }
+            item.setOnClickListener { changeColor(it) }
+        }
+    }
 
-    }}
 
-    fun makeColored(view: View) {
+    private fun changeColor(view: View) {
         when (view.id) {
-
-            // Boxes using Color class colors for background
-            R.id.box_one_text -> view.setBackgroundColor(Color.DKGRAY)
-            R.id.box_two_text -> view.setBackgroundColor(Color.GRAY)
-
-            // Boxes using Android color resources for background
-            R.id.box_three_text -> view.setBackgroundResource(android.R.color.holo_green_light)
-            R.id.box_four_text -> view.setBackgroundResource(android.R.color.holo_green_light)
-            R.id.box_five_text -> view.setBackgroundResource(android.R.color.holo_green_light)
+            R.id.box_three_text -> view.setBackgroundResource(android.R.color.white)
+            R.id.box_four_text -> view.setBackgroundResource(android.R.color.white)
+            R.id.box_five_text -> view.setBackgroundResource(android.R.color.white)
+            R.id.button_1 -> binding.boxThreeText.setBackgroundResource(R.color.red)
+            R.id.button_2 -> binding.boxFourText.setBackgroundResource(R.color.yellow)
+            R.id.button_3 -> binding.boxFiveText.setBackgroundResource(R.color.green)
 
             else -> view.setBackgroundColor(Color.LTGRAY)
         }
     }
+
+
 }
+
+
 
 
